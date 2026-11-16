@@ -11,8 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import { episodes } from "../../types/type";
 import { setStreamEpisode } from "../../redux/search-slice";
-import { db } from "../../firebase/Firebase";
-import { ref, set } from "firebase/database";
+import { db, ref, set } from "../../firebase/Firebase";
 import { Buffer } from "buffer";
 import { setStreamEpisodeObject } from "../../redux/videoState-slice";
 

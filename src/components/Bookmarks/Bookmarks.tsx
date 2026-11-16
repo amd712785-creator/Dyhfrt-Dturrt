@@ -14,8 +14,7 @@ import {
   setBookmarks,
   setSearchQueryView,
 } from "../../redux/search-slice";
-import { onValue, ref } from "firebase/database";
-import { db } from "../../firebase/Firebase";
+import { db, onValue, ref } from "../../firebase/Firebase";
 
 const Bookmarks = () => {
   const [modalId, setModalId] = useState<number>(0);

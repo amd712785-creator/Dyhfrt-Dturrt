@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
@@ -8,22 +9,43 @@ import Notification from "./components/Shared/Notification";
 import ForgotPassword from "./components/Login/ForgotPassword";
 import { fetchUserDataById, RootState, useAppDispatch } from "./redux/store";
 import { useSelector } from "react-redux";
-import { onValue, ref } from "firebase/database";
 import { setBookmarks } from "./redux/search-slice";
-import { db } from "./firebase/Firebase";
+import { setUser } from "./redux/google-slice";
+import { db, onValue, ref } from "./firebase/Firebase";
 
 function App() {
   const dispatch = useAppDispatch();
 
   const uid = useSelector((state: any) => state.google.profileObject?.uid);
-  dispatch(fetchUserDataById(uid));
 
-  onValue(ref(db, `users/${uid}/bookmarks`), (snapshot: { val: () => any }) => {
-    const data = snapshot.val();
-    if (data !== null) {
-      dispatch(setBookmarks(data));
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser && !uid) {
+      try {
+        dispatch(setUser(JSON.parse(savedUser)));
+      } catch {
+        // Ignore malformed user
+      }
     }
-  });
+  }, [dispatch, uid]);
+
+  useEffect(() => {
+    if (!uid) return;
+    dispatch(fetchUserDataById(uid));
+
+    const unsubscribe = onValue(
+      ref(db, `users/${uid}/bookmarks`),
+      (snapshot: { val: () => any }) => {
+        const data = snapshot.val();
+        if (data !== null) {
+          dispatch(setBookmarks(data));
+        }
+      }
+    );
+    return () => {
+      if (typeof unsubscribe === "function") unsubscribe();
+    };
+  }, [dispatch, uid]);
 
   const notificationReducer = useSelector(
     (state: RootState) => state.notification

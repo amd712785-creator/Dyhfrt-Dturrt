@@ -4,11 +4,15 @@ import logo from "../../assets/logo-long.png";
 import { useNavigate } from "react-router";
 import LoginButton from "./google/LoginButton";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../../redux/google-slice";
 import { useNotification } from "../../hooks/useNotification";
 import { Link } from "react-router-dom";
-import { SignInAnonymously, SignInWithGoogle } from "../../firebase/Firebase";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  SignInAnonymously,
+  SignInWithGoogle,
+} from "../../firebase/Firebase";
 import ReactGA from "react-ga";
 
 const Login = () => {

@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import Hls from "hls.js";
 import useWindowResize from "../../hooks/useWindowResize";
-import { onValue, ref, set } from "firebase/database";
-import { db } from "../../firebase/Firebase";
+import { db, onValue, ref, set } from "../../firebase/Firebase";
 import { Buffer } from "buffer";
 
 export default function Player({ option, getInstance }: any) {

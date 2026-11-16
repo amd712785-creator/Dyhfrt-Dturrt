@@ -10,8 +10,7 @@ import {
   watchViewOpened,
 } from "../../redux/store";
 import { setStreamProvider, setVideoLink } from "../../redux/videoState-slice";
-import { onValue, ref, set } from "firebase/database";
-import { db } from "../../firebase/Firebase";
+import { db, onValue, ref, set } from "../../firebase/Firebase";
 import { Buffer } from "buffer";
 import { setStreamEpisode } from "../../redux/search-slice";
 

@@ -1,5 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "../../firebase/Firebase";
 //@ts-ignore
 import logo from "../../assets/logo-long.png";
 import LoginButton from "./google/LoginButton";

@@ -25,7 +25,7 @@ export const googleSlice = createSlice({
   initialState: initialState,
   reducers: {
     setUser: (state, action: PayloadAction<profileObject>) => {
-      state.profileObject = action.payload;
+      state.profileObject = action.payload || initialState.profileObject;
     },
   },
 });

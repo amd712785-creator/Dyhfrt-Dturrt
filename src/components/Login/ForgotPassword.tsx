@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 //@ts-ignore
 import logo from "../../assets/logo-long.png";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "../../firebase/Firebase";
 import { useNotification } from "../../hooks/useNotification";
 import { Link } from "react-router-dom";
 

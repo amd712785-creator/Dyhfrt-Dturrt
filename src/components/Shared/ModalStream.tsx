@@ -23,8 +23,7 @@ import {
   setStreamProvider,
 } from "../../redux/videoState-slice";
 import { useNotification } from "../../hooks/useNotification";
-import { onValue, ref, set } from "firebase/database";
-import { db } from "../../firebase/Firebase";
+import { db, onValue, ref, set } from "../../firebase/Firebase";
 import Relations from "../Shared/Relations";
 import ProviderDropdown from "./ProviderDropdown";
 import ArtPlayerApp from "../videoplayer/ArtPlayerApp";

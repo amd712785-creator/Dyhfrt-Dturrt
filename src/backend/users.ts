@@ -1,15 +1,14 @@
-import { get, child, ref, set, getDatabase, update } from "firebase/database";
-import { db } from "../firebase/Firebase";
+import { get, child, ref, set, getDatabase, update, db } from "../firebase/Firebase";
 const dbRef = ref(getDatabase());
 
 export const getUserDataById = async (userId: string) => {
   try {
+    if (!userId) return {};
     const snapshot = await get(child(dbRef, `users/${userId}`));
-    if (snapshot.exists()) return snapshot.val();
+    if (snapshot.exists()) return snapshot.val() || {};
     return {};
   } catch (error) {
-    return;
-    throw error;
+    return {};
   }
 };
 

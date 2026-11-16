@@ -43,7 +43,10 @@ const TopAnime = ({ currentPage, paginate }: props) => {
     setTimeout(() => {
       dispatch(fetchTopAnimes(currentPage));
     }, 600);
-    dispatch(setUser(JSON.parse(localStorage.getItem("user") as string)));
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      dispatch(setUser(JSON.parse(savedUser)));
+    }
   }, [format, currentPage, status]);
 
   useEffect(() => {
